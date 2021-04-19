@@ -9,5 +9,5 @@ $ npm start
 ```
 
 ## Membres
-Hadil Fria, Rémi Karmann, Eléa Carton.
+Hadil Friaa, Rémi Karmann, Eléa Carton.
 Groupe 1
