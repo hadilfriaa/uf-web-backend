@@ -14,7 +14,7 @@ exports.create = (req, res) => {
       telephone: req.body.telephone,
       email: req.body.email,
       password: hashedPassword,
-      IsAdmin: req.body.IsAdmin,
+      isAdmin: req.body.isAdmin,
     });
   
     user
@@ -23,7 +23,7 @@ exports.create = (req, res) => {
         let userToken = jwt.sign(
           {
             id: data._id,
-            IsAdmin: data.IsAdmin,
+            isAdmin: data.isAdmin,
           },
           'supersecret',
           {
@@ -98,7 +98,7 @@ exports.modifyUser = (req, res, next) => {
       lastName: req.body.lastName,
       telephone: req.body.telephone,
       password: req.body.password,
-      IsAdmin: req.body.IsAdmin,
+      isAdmin: req.body.isAdmin,
     });
     User.updateOne({_id: req.params.id}, user).then(
       () => {
@@ -134,7 +134,7 @@ exports.deleteUser = (req, res, next) => {
 };
 
 
-exports.getAllUser = (req, res) => {
+exports.getAll = (req, res) => {
   User.find()
   .then(
     (Users) => {

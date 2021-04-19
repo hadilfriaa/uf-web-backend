@@ -28,7 +28,7 @@ exports.create = (req, res) => {
 }
 
 
-exports.getAllProduct = (req, res) => {
+exports.getAll = (req, res) => {
     Product.find()
     .then(
       (Products) => {
@@ -41,23 +41,6 @@ exports.getAllProduct = (req, res) => {
         });
       }
     );
-};
-
-exports.getProductCategory = (req, res) => {
-  Product.find({
-    category: req.params.category
-  })
-  .then(
-    (Products) => {
-      res.status(200).json(Products);
-    }
-  ).catch(
-    (error) => {
-      res.status(400).json({
-        error: error
-      });
-    }
-  );
 };
 
 

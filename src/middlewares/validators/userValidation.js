@@ -5,8 +5,8 @@ const userValidation = (req,res,next) =>{
         firstName: Joi.string().uppercase().required(),
         lastName: Joi.string().uppercase().required(),
         email: Joi.string().email().required(),
-        password: Joi.string().required(),
-        IsAdmin: Joi.boolean(),
+        password: Joi.string().pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$')).required(),
+        isAdmin: Joi.boolean(),
     });
 
     const validation = userValidationSchema.validate(req.body);

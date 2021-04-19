@@ -4,13 +4,11 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     firstName: {
         type: String,
-        required: true,
-        lowercase: true
+        required: true
     },
     lastName: {
         type: String,
-        required: true,
-        lowercase: true
+        required: true
     },
     email: {
         type: String,
@@ -23,7 +21,7 @@ const userSchema = new Schema({
         minlength: 4,
         unique: true
     },
-    IsAdmin: {
+    isAdmin: {
         type: Boolean,
         default: false
     },
