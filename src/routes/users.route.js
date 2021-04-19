@@ -10,7 +10,7 @@ router.post('/users', userValidation, user.create);
 router.get('/users/:id', verifyToken, user.getUser);
 router.put('/users/:id', verifyToken, user.modifyUser);
 router.delete('/users/:id', verifyAdmin, user.deleteUser);
-router.post('/users/login', user.login);
+router.post('/login', user.login);
 router.get('/users', verifyAdmin, user.getAll);
 
 module.exports = router;
