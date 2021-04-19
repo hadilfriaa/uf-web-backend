@@ -34,9 +34,9 @@
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.16",
-    "stripe": "^8.139.0",
-    "nodemon": "^2.0.7"
+    "stripe": "^8.139.0"
   },
   "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
