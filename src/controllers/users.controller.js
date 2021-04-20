@@ -44,19 +44,17 @@ exports.create = (req, res) => {
   };
 
 exports.getUser = (req, res) => {
-    User.findOne({
-      _id: req.params.id
-    }).then(
-      (user) => {
-        res.status(200).json(user);
-      }
-    ).catch(
-      (error) => {
-        res.status(404).json({
-          error: error
+    User.findById(req.params.id)
+    .then((data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `User with id ${req.params.id} not found`,
+          // message:"User with id" + req.params.id +"not found"
         });
       }
-    );
+      res.send(data);
+    })
+    .catch((err) => res.send(err));
 };
 
 
@@ -72,10 +70,10 @@ exports.login = (req, res) => {
                         return res.status(401).json({ error: 'password wrong'})
                     }
                     res.status(200).json({
-                        userId: user._id,
+                        id: user._id,
                         token: jwt.sign(
                             { 
-                              userId: user._id
+                              id: user._id
                             },
                             'supersecret',
                             { expiresIn: 86400 },
