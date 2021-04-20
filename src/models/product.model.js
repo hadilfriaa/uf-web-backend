@@ -22,10 +22,14 @@ const ProductSchema = new Schema({
         type: String,
         required: true
     },
-    history: {
-        type: Array
-    }
-    
+    status: {
+        type: String,
+        required: true
+    },
+    history: [{
+        type: Schema.Types.ObjectId,
+        ref: 'History'
+    }]
 })
 
 module.exports = mongoose.model('Product', ProductSchema);

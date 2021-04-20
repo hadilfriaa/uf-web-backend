@@ -7,7 +7,8 @@ exports.create = (req, res) => {
         imageUrl: req.body.imageUrl,
         price: req.body.price,
         date: req.body.date,
-        historique: req.body.historique
+        status: req.body.status,
+        history: req.body.history
     });
 
     product.save()
