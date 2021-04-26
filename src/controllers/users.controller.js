@@ -59,7 +59,6 @@ exports.getUser = (req, res) => {
 
 
 exports.login = (req, res) => {
-<<<<<<< HEAD
   User.findOne({
     email: req.body.email,
   })
@@ -103,34 +102,6 @@ exports.login = (req, res) => {
     .catch((err) => {
       res.send(err);
     });
-=======
-    User.findOne({email: req.body.email})
-        .then(user => {
-            if (!user) {
-                return res.status(401).json({ error: 'user not found'})
-            }
-            bcrypt.compare(req.body.password, user.password)
-                .then(comp =>{
-                    if(!comp){
-                        return res.status(401).json({ error: 'password wrong'})
-                    }
-                    res.status(200).json({
-                        id: user._id,
-                        token: jwt.sign(
-                            { 
-                              id: user._id
-                            },
-                            'supersecret',
-                            { expiresIn: 86400 },
-                        
-                        ),
-                        auth: true
-                    });
-                })
-                .catch(error => res.status(500).json({ error }))
-        })
-        .catch(error => res.status(500).json({error}))
->>>>>>> b9095fca71487b321fdb8c95ff9eb4951d462032
 };
 
 
