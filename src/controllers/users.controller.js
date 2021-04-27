@@ -163,3 +163,19 @@ exports.getAll = (req, res) => {
     }
   );
 };
+
+
+exports.calcul = (req, res) => {
+  User.count()
+  .then(
+    (Calcul) => {
+      res.status(200).json(Calcul);
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
+};
