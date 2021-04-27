@@ -11,7 +11,7 @@ exports.create = (req, res) => {
     const user = new User({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      telephone: req.body.telephone,
+      phone: req.body.phone,
       email: req.body.email,
       password: hashedPassword,
       isAdmin: req.body.isAdmin,
