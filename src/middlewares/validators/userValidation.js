@@ -15,8 +15,8 @@ const userValidation = (req,res,next) =>{
     console.log(validation);
 
     if (validation.error) {
-        return res.send({
-            error: validation.error
+        return res.status(400).send({
+            error: validation.error.details
         })
 
     };
