@@ -47,7 +47,7 @@ exports.getUser = (req, res) => {
     User.findById(req.params.id)
     .then((data) => {
       if (!data) {
-        res.status(404).send({
+        res.status(400).send({
           message: `User with id ${req.params.id} not found`,
           // message:"User with id" + req.params.id +"not found"
         });
@@ -65,7 +65,7 @@ exports.login = (req, res) => {
       .then((data) => {
         
       if (!data) {
-        return res.status(404).send({
+        return res.status(400).send({
           auth: false,
           token: null,
           message: `No user find with email ${req.body.email}`,
