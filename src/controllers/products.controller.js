@@ -102,3 +102,35 @@ exports.deleteProduct = (req, res, next) => {
     }
   );
 };
+
+exports.calcul = (req, res) => {
+  Product.count()
+  .then(
+    (Calcul) => {
+      res.status(200).json(Calcul);
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
+};
+
+exports.calculSales = (req, res) => {
+  Product.count(
+    Product.findOne({"status":"vendu"})
+  )
+  .then(
+    (Calcul) => {
+      res.status(200).json(Calcul);
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
+};
