@@ -14,7 +14,7 @@ exports.create = (req, res) => {
       phone: req.body.phone,
       email: req.body.email,
       password: hashedPassword,
-      isAdmin: req.body.isAdmin,
+      isAdmin: req.body.isAdmin
     });
   
     user
@@ -111,7 +111,7 @@ exports.modifyUser = (req, res, next) => {
       _id: req.params.id,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      telephone: req.body.telephone,
+      phone: req.body.phone,
       password: req.body.password,
       isAdmin: req.body.isAdmin,
     });
