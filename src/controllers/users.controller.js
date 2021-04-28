@@ -97,6 +97,7 @@ exports.login = (req, res) => {
       res.send({
         auth: true,
         token: userToken,
+        id: data._id
       });
     })
     .catch((err) => {
