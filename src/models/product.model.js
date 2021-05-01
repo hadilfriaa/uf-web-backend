@@ -24,12 +24,18 @@ const ProductSchema = new Schema({
     },
     status: {
         type: String,
-        required: true
+        required: true,
+        default: 'actif'
     },
     history: [{
         type: Schema.Types.ObjectId,
         ref: 'History'
-    }]
+    }],
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
+
 })
 
 module.exports = mongoose.model('Product', ProductSchema);

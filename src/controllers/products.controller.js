@@ -8,7 +8,8 @@ exports.create = (req, res) => {
         price: req.body.price,
         date: req.body.date,
         status: req.body.status,
-        history: req.body.history
+        history: req.body.history,
+        user: req.body.user
     });
 
     product.save()
@@ -70,7 +71,8 @@ exports.modifyProduct = (req, res, next) => {
       imageUrl: req.body.imageUrl,
       price: req.body.price,
       date: req.body.date,
-      historique: req.body.historique
+      status: req.body.status,
+      history: req.body.history
         });
     Product.updateOne({_id: req.params.id}, product).then(
       () => {
