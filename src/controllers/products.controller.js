@@ -136,3 +136,18 @@ exports.calculSales = (req, res) => {
     }
   );
 };
+
+exports.getProductsByIdUser = (req, res) => {
+  Product.find({"user": req.params.id})
+    .then(
+      (Products) => {
+        res.status(200).json(Products);
+      }
+    ).catch(
+      (error) => {
+        res.status(400).json({
+          error: error
+        });
+      }
+    );
+}

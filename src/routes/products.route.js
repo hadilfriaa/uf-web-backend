@@ -13,6 +13,7 @@ router.put('/products/:id', verifyUserAdmin, product.modifyProduct);
 router.delete('/products/:id', verifyUserAdmin, product.deleteProduct);
 router.get('/calculProducts',verifyAdmin, product.calcul);
 router.get('/calculSales',verifyAdmin, product.calculSales);
+router.get('/products/user/:id', verifyUserAdmin, product.getProductsByIdUser);
 
 
 
