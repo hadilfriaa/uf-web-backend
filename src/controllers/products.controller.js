@@ -7,6 +7,7 @@ exports.create = (req, res) => {
         imageUrl: req.body.imageUrl,
         price: req.body.price,
         date: req.body.date,
+        time: req.body.time,
         status: req.body.status,
         history: req.body.history,
         user: req.body.user
@@ -71,6 +72,7 @@ exports.modifyProduct = (req, res, next) => {
       imageUrl: req.body.imageUrl,
       price: req.body.price,
       date: req.body.date,
+      time: req.body.time,
       status: req.body.status,
       history: req.body.history
         });
