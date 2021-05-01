@@ -4,7 +4,6 @@ const product = require('../controllers/products.controller');
 const verifyToken = require ('../middlewares/verifyToken');
 const verifyUserAdmin = require ('../middlewares/verifyUserAdmin');
 const verifyAdmin = require ('../middlewares/verifyAdmin');
-const verifyUser = require('../middlewares/verifyToken')
 
 
 router.get('/products/:id', product.getProduct);
