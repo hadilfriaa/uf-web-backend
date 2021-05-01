@@ -5,6 +5,7 @@ exports.create = (req, res) => {
     const history = new History({
         priceH: req.body.priceH,
         dateH: req.body.dateH,
+        timeH: req.body.timeH,
         user: req.body.user,
         product: req.body.product
     });
