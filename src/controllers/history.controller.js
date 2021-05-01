@@ -6,17 +6,11 @@ exports.create = (req, res) => {
         priceH: req.body.priceH,
         dateH: req.body.dateH,
         user: req.body.user,
-        product: req.body.price
+        product: req.body.product
     });
 
     history.save()
     .then((data) => {
-        Product.findByIdAndUpdate(req.body.product, {$push: {products: data._id}}).then(() => {
-            res.send({
-                data: data,
-            })
-            .catch((err) => res.send(err));
-        });
         res.send({
             data: data,
         })
@@ -28,15 +22,8 @@ exports.create = (req, res) => {
             message: err.message || "some error occured while creating order"
         })
     })
-    .catch((err) => {
-        console.log(err.message);    
-        res.status(500).send({
-            error: 500,
-            message: err.message || "some error occured while creating history"
-        })
-    })
 
-}
+};
 
 
 exports.getAll = (req, res) => {
@@ -85,4 +72,34 @@ exports.delete = (req, res) => {
       })
       .catch((err) => res.send(err));
     
+  };
+
+  // exports.getAllByIdUser = (req, res) => {
+  //   History.find({"user": req.params.id})
+  //   .then(
+  //     (Historys) => {
+  //       res.status(200).json(Historys);
+  //     }
+  //   ).catch(
+  //     (error) => {
+  //       res.status(400).json({
+  //         error: error
+  //       });
+  //     }
+  //   );
+  // };
+
+  exports.getAllByIdProduct = (req, res) => {
+    History.find({"product": req.params.id})
+    .then(
+      (Historys) => {
+        res.status(200).json(Historys);
+      }
+    ).catch(
+      (error) => {
+        res.status(400).json({
+          error: error
+        });
+      }
+    );
   };

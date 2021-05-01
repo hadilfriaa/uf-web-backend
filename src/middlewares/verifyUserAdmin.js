@@ -30,9 +30,8 @@ function verifyToken(req, res, next) {
             }
           ).catch(
             (error) => {
-              res.status(401).send({
-                error: error,
-                message: "erreur test zebi c'est chiant"
+              res.status(404).json({
+                error: error
               });
             }
           );
