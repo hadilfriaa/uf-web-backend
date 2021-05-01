@@ -3,7 +3,8 @@ const router = express.Router();
 const product = require('../controllers/products.controller');
 const verifyToken = require ('../middlewares/verifyToken');
 const verifyUserAdmin = require ('../middlewares/verifyUserAdmin');
-const verifyAdmin = require ('../middlewares/verifyAdmin')
+const verifyAdmin = require ('../middlewares/verifyAdmin');
+const verifyUser = require('../middlewares/verifyToken')
 
 
 router.get('/products/:id', product.getProduct);
@@ -13,7 +14,7 @@ router.put('/products/:id', verifyUserAdmin, product.modifyProduct);
 router.delete('/products/:id', verifyUserAdmin, product.deleteProduct);
 router.get('/calculProducts',verifyAdmin, product.calcul);
 router.get('/calculSales',verifyAdmin, product.calculSales);
-router.get('/products/user/:id', verifyUserAdmin, product.getProductsByIdUser);
+router.get('/products/user/:id', verifyToken, product.getProductsByIdUser);
 
 
 
