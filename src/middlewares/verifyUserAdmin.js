@@ -27,6 +27,17 @@ function verifyToken(req, res, next) {
                 if(product.user._id == decoded.id){
                     validation = true;
                 }
+                // Verify admin role
+        
+                if (decoded.isAdmin == false && validation == false) {
+                    return res.status(401).send({
+                        auth: false,
+                        adminToken: null,
+                        message:"permission denied"
+                    })
+                }else{
+                    next();
+                }
             }
           ).catch(
             (error) => {
@@ -35,15 +46,7 @@ function verifyToken(req, res, next) {
               });
             }
           );
-        // Verify admin role
-        if (decoded.isAdmin == false && validation == false) {
-            return res.status(401).send({
-                auth: false,
-                adminToken: null,
-                message:"permission denied"
-            })
-        }
-        next();
+
     })
 }
 
