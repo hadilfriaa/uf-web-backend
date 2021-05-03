@@ -27,9 +27,8 @@ const ProductSchema = new Schema({
         required: true
     },
     status: {
-        type: String,
-        required: true,
-        default: 'actif'
+        type: Boolean,
+        default: true
     },
     history: [{
         type: Schema.Types.ObjectId,

@@ -32,7 +32,7 @@ exports.create = (req, res) => {
 
 
 exports.getAll = (req, res) => {
-    Product.find()
+    Product.find({"status": true})
     .then(
       (Products) => {
         res.status(200).json(Products);
