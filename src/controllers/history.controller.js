@@ -10,53 +10,51 @@ exports.create = (req, res) => {
         product: req.body.product
     });
 
-    history.save()
-    .then((data) => {
-        res.send({
-            data: data,
-        })
-    })
-    .catch((err) => {
-        console.log(err.message);    
-        res.status(500).send({
+    Product.findOne({
+      _id: req.body.product
+    }).then(
+      (product) => {
+        const lastPrice = product.price;
+        if(req.body.priceH <= lastPrice){
+          res.status(500).send({
             error: 500,
-            message: err.message || "some error occured while creating order"
-        })
-    })
-
-};
-
-
-exports.getAll = (req, res) => {
-    History.find()
-    .then(
-      (Historys) => {
-        res.status(200).json(Historys);
+            message: "Vous ne pouvez pas faire une offre d'un montant inférieur à l'offre précédente"
+          })
+        }else{
+          history.save()
+          .then((data) => {
+            Product.findByIdAndUpdate(req.body.product, {$push: {history: data._id}}).then(() => {
+              res.send({
+                  data: data,
+              })
+              .catch((err) => res.send(err));
+            });
+            Product.findByIdAndUpdate(req.body.product, {price: data.priceH}).then(() => {
+              res.send({
+                  data: data,
+              })
+              .catch((err) => res.send(err));
+            });
+            res.send({
+              data: data,
+            })
+          })
+          .catch((err) => {
+              console.log(err.message);    
+              res.status(500).send({
+                  error: 500,
+                  message: err.message || "some error occured while creating order"
+              })
+          })
+        }
       }
     ).catch(
       (error) => {
-        res.status(400).json({
+        res.status(404).json({
           error: error
         });
       }
     );
-};
-
-
-exports.getOne = (req, res) => {
-  History.findOne({
-    _id: req.params.id
-  }).then(
-    (history) => {
-      res.status(200).json(history);
-    }
-  ).catch(
-    (error) => {
-      res.status(404).json({
-        error: error
-      });
-    }
-  );
 };
 
 exports.delete = (req, res) => {
@@ -74,21 +72,6 @@ exports.delete = (req, res) => {
       .catch((err) => res.send(err));
     
   };
-
-  // exports.getAllByIdUser = (req, res) => {
-  //   History.find({"user": req.params.id})
-  //   .then(
-  //     (Historys) => {
-  //       res.status(200).json(Historys);
-  //     }
-  //   ).catch(
-  //     (error) => {
-  //       res.status(400).json({
-  //         error: error
-  //       });
-  //     }
-  //   );
-  // };
 
   exports.getAllByIdProduct = (req, res) => {
     History.find({"product": req.params.id})
