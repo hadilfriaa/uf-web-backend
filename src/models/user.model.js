@@ -16,14 +16,12 @@ const userSchema = new Schema({
         unique: true
     },
     phone: {
-        type: String,
-        unique:true
+        type: String
     },
     password: {
         type: String,
         required: true,
-        minlength: 4,
-        unique: true
+        minlength: 4
     },
     isAdmin: {
         type: Boolean,
