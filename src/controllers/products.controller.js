@@ -46,6 +46,20 @@ exports.getAll = (req, res) => {
     );
 };
 
+exports.getAllProducts = (req, res) => {
+  Product.find()
+  .then(
+    (Products) => {
+      res.status(200).json(Products);
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
+};
 
 exports.getProduct = (req, res) => {
   Product.findOne({
@@ -124,7 +138,7 @@ exports.calcul = (req, res) => {
 
 exports.calculSales = (req, res) => {
   Product.count(
-    Product.findOne({"status":false})
+    Product.findOne({"status":"vendu"})
   )
   .then(
     (Calcul) => {
