@@ -124,7 +124,7 @@ exports.calcul = (req, res) => {
 
 exports.calculSales = (req, res) => {
   Product.count(
-    Product.findOne({"status":"vendu"})
+    Product.findOne({"status":false})
   )
   .then(
     (Calcul) => {
