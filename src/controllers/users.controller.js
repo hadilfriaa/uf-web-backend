@@ -166,8 +166,27 @@ exports.getAll = (req, res) => {
 };
 
 
-exports.calcul = (req, res) => {
-  User.count()
+exports.calculUsers = (req, res) => {
+  User.count(
+    User.findOne({"isAdmin":false})
+  )
+  .then(
+    (Calcul) => {
+      res.status(200).json(Calcul);
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
+};
+
+exports.calculAdmins = (req, res) => {
+  User.count(
+    User.findOne({"isAdmin":true})
+  )
   .then(
     (Calcul) => {
       res.status(200).json(Calcul);

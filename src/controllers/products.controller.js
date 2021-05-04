@@ -153,6 +153,23 @@ exports.calculSales = (req, res) => {
   );
 };
 
+exports.calculNotSold = (req, res) => {
+  Product.count(
+    Product.findOne({"status":true})
+  )
+  .then(
+    (Calcul) => {
+      res.status(200).json(Calcul);
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
+};
+
 exports.getProductsByIdUser = (req, res) => {
   Product.find({"user": req.params.id})
     .then(

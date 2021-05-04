@@ -12,7 +12,8 @@ router.put('/users/:id', verifyToken, user.modifyUser);
 router.delete('/users/:id', verifyAdmin, user.deleteUser);
 router.post('/login', user.login);
 router.get('/users', verifyAdmin, user.getAll);
-router.get('/calculUsers', verifyAdmin, user.calcul);
+router.get('/calculUsers', verifyAdmin, user.calculUsers);
+router.get('/calculAdmins', verifyAdmin, user.calculAdmins);
 
 
 module.exports = router;
